@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  --color-primary: #07be8a;
+  --color-primary-50: #f0fdf9;
+  --color-primary-100: #ccfbef;
+  --color-primary-200: #99f6e0;
+  --color-primary-300: #5eead4;
+  --color-primary-400: #2dd4bf;
+  --color-primary-500: #07be8a;
+  --color-primary-600: #0d9488;
+  --color-primary-700: #0f766e;
+  --color-primary-800: #115e59;
+  --color-primary-900: #134e4a;
+  
+  --font-serif: "Times New Roman", serif;
+  --font-sans: "Source Sans Pro", sans-serif;
+  --font-display: "Bungee", sans-serif;
+  --font-times: "Times New Roman", serif;
+  --font-source: "Source Sans Pro", sans-serif;
+  --font-bungee: "Bungee", sans-serif;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  width: 100%;
+}
+
