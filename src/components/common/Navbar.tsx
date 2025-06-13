@@ -121,7 +121,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+    <header className="bg-white  sticky top-0 z-50">
       {/* Mobile Header */}
       <div className="md:hidden">
         <div className="flex items-center justify-between px-4 py-3">
@@ -151,7 +151,7 @@ export default function Navbar() {
 
           {/* Mobile Logo */}
           <Link to="/" className="flex-1 flex justify-center">
-            <span className="text-xl font-light text-black">StyleIn</span>
+            <span className="text-xl ml-10 text-black font-semibold ">StyleIn</span>
           </Link>
 
           {/* Mobile Actions */}
@@ -269,11 +269,11 @@ export default function Navbar() {
 
       {/* Desktop Header */}
       <div className="hidden md:block">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className=" mx-auto max-w-[85%] ">
           <div className="flex items-center justify-between h-16">
             {/* Desktop Logo */}
             <div className="flex-shrink-0">
-              <Link to="/" className="text-2xl font-light text-black">
+              <Link to="/" className="text-2xl font-bold text-black">
                 StyleIn
               </Link>
             </div>
@@ -286,11 +286,12 @@ export default function Navbar() {
                     className="relative group"
                     onMouseEnter={() => handleMouseEnter(item.name)}
                     onMouseLeave={handleMouseLeave}
+                    
                   >
                     {" "}
                     <Link
                       to={item.href}
-                      className="flex items-center text-gray-700 hover:text-primary py-2 text-sm font-medium transition-colors"
+                      className="flex items-center text-gray-700 hover:text-primary py-2 font-semibold  transition-colors"
                     >
                       {item.name}
                       {item.hasSubmenu && (

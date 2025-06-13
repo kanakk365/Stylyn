@@ -1,218 +1,228 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useState, useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import ProductCard from "../ui/ProductCard";
 
 export default function TrendingSection() {
-  const [activeTab, setActiveTab] = useState("men")
+  const [activeTab, setActiveTab] = useState("0");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      const containerWidth = scrollContainerRef.current.clientWidth;
+      const scrollAmount = containerWidth / 4; // Scroll by one card width
+      scrollContainerRef.current.scrollBy({
+        left: -scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
 
-  const products = {
-    men: [
-      {
-        id: 1,
-        name: "Classic Oxford Shirt",
-        price: "$89.00",
-        image: "/placeholder.svg?height=400&width=300&text=Oxford+Shirt",
-        category: "Shirts",
-        isNew: true,
-      },
-      {
-        id: 2,
-        name: "Slim Fit Chinos",
-        price: "$75.00",
-        image: "/placeholder.svg?height=400&width=300&text=Chinos",
-        category: "Pants",
-        isNew: false,
-      },
-      {
-        id: 3,
-        name: "Merino Wool Sweater",
-        price: "$120.00",
-        image: "/placeholder.svg?height=400&width=300&text=Wool+Sweater",
-        category: "Knitwear",
-        isNew: true,
-      },
-      {
-        id: 4,
-        name: "Leather Derby Shoes",
-        price: "$195.00",
-        image: "/placeholder.svg?height=400&width=300&text=Derby+Shoes",
-        category: "Footwear",
-        isNew: false,
-      },
-    ],
-    women: [
-      {
-        id: 5,
-        name: "Silk Blouse",
-        price: "$110.00",
-        image: "/placeholder.svg?height=400&width=300&text=Silk+Blouse",
-        category: "Tops",
-        isNew: true,
-      },
-      {
-        id: 6,
-        name: "High-Waisted Jeans",
-        price: "$95.00",
-        image: "/placeholder.svg?height=400&width=300&text=High+Waisted+Jeans",
-        category: "Pants",
-        isNew: false,
-      },
-      {
-        id: 7,
-        name: "Cashmere Cardigan",
-        price: "$145.00",
-        image: "/placeholder.svg?height=400&width=300&text=Cashmere+Cardigan",
-        category: "Knitwear",
-        isNew: true,
-      },
-      {
-        id: 8,
-        name: "Leather Ankle Boots",
-        price: "$220.00",
-        image: "/placeholder.svg?height=400&width=300&text=Ankle+Boots",
-        category: "Footwear",
-        isNew: false,
-      },
-    ],
-    combos: [
-      {
-        id: 9,
-        name: "Business Casual Set",
-        price: "$250.00",
-        image: "/placeholder.svg?height=400&width=300&text=Business+Casual+Set",
-        category: "Outfit Sets",
-        isNew: true,
-        includes: "Shirt, Pants, Belt",
-      },
-      {
-        id: 10,
-        name: "Weekend Getaway Set",
-        price: "$180.00",
-        image: "/placeholder.svg?height=400&width=300&text=Weekend+Set",
-        category: "Outfit Sets",
-        isNew: false,
-        includes: "T-shirt, Jeans, Cap",
-      },
-      {
-        id: 11,
-        name: "Date Night Ensemble",
-        price: "$320.00",
-        image: "/placeholder.svg?height=400&width=300&text=Date+Night+Set",
-        category: "Outfit Sets",
-        isNew: true,
-        includes: "Blazer, Shirt, Trousers",
-      },
-      {
-        id: 12,
-        name: "Athleisure Collection",
-        price: "$210.00",
-        image: "/placeholder.svg?height=400&width=300&text=Athleisure+Set",
-        category: "Outfit Sets",
-        isNew: false,
-        includes: "Hoodie, Joggers, Sneakers",
-      },
-    ],
-  }
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      const containerWidth = scrollContainerRef.current.clientWidth;
+      const scrollAmount = containerWidth / 4; // Scroll by one card width
+      scrollContainerRef.current.scrollBy({
+        left: scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const tabOptions = [
+    { value: "0", label: "New Arrivals" },
+    { value: "1", label: "Best Sellers" },
+    { value: "2", label: "Featured" },
+  ];
+
+  const products = [
+    {
+      id: 1,
+      name: "Naruto Evolution Oversized T-Shirt",
+      price: "Rs. 699.00",
+      originalPrice: "Rs. 1,999.00",
+      image:
+        "//crazymonk.in/cdn/shop/files/Naruto_CM.jpg?v=1748102668&width=1100",
+      hoverImage:
+        "//crazymonk.in/cdn/shop/files/Naruto_1.jpg?v=1748102668&width=1100",
+      isOnSale: true,
+      description:
+        "Product HighlightsFabric - 240 GSM Heavy Gauge, Bio-Washed Cotton Pattern - PrintedSleeves - Half SleeveFit -...",
+    },
+    {
+      id: 2,
+      name: "Jin Woo X Shadow Monarch Solo Leveling Oversized T-Shirt - Multi Color",
+      price: "Rs. 799.00",
+      originalPrice: "Rs. 1,999.00",
+      image:
+        "//crazymonk.in/cdn/shop/files/JinWoo_CM.jpg?v=1746189962&width=1100",
+      hoverImage:
+        "//crazymonk.in/cdn/shop/files/JIN.jpg?v=1746189962&width=1100",
+      isOnSale: true,
+      description:
+        "Product HighlightsFabric - 240 GSM Heavy Gauge, Bio-Washed Cotton Pattern - PrintedSleeves - Half SleeveFit -...",
+    },
+    {
+      id: 3,
+      name: "Warrior of Liberation Oversized T-Shirt - Multi Color",
+      price: "Rs. 699.00",
+      originalPrice: "Rs. 1,999.00",
+      image:
+        "//crazymonk.in/cdn/shop/files/WarriorofLiberation_2_CM.jpg?v=1746189955&width=1100",
+      hoverImage:
+        "//crazymonk.in/cdn/shop/files/WarriorofLiberation_1_3e393d6d-3581-46f3-9d5c-378059c57272.jpg?v=1746189955&width=1100",
+      isOnSale: true,
+      description:
+        "Product HighlightsFabric - 240 GSM Heavy Gauge, Bio-Washed Cotton Pattern - PrintedSleeves - Half SleeveFit -...",
+    },
+    {
+      id: 4,
+      name: "Ultra Ego Oversized T-Shirt",
+      price: "Rs. 699.00",
+      originalPrice: "Rs. 1,199.00",
+      image:
+        "//crazymonk.in/cdn/shop/files/UltraEgo_2_CM.jpg?v=1746190351&width=1100",
+      hoverImage:
+        "//crazymonk.in/cdn/shop/files/UltraEgo_1_aa37f4b1-b2e4-413a-ba46-87adc72f2f7d.jpg?v=1746190351&width=1100",
+      isOnSale: true,
+      description:
+        "Product HighlightsFabric - 240 GSM Heavy Gauge, Bio-Washed Cotton Pattern - PrintedSleeves - Half SleeveFit -...",
+    },
+    {
+      id: 1,
+      name: "Naruto Evolution Oversized T-Shirt",
+      price: "Rs. 699.00",
+      originalPrice: "Rs. 1,999.00",
+      image:
+        "//crazymonk.in/cdn/shop/files/Naruto_CM.jpg?v=1748102668&width=1100",
+      hoverImage:
+        "//crazymonk.in/cdn/shop/files/Naruto_1.jpg?v=1748102668&width=1100",
+      isOnSale: true,
+      description:
+        "Product HighlightsFabric - 240 GSM Heavy Gauge, Bio-Washed Cotton Pattern - PrintedSleeves - Half SleeveFit -...",
+    },
+    {
+      id: 2,
+      name: "Jin Woo X Shadow Monarch Solo Leveling Oversized T-Shirt - Multi Color",
+      price: "Rs. 799.00",
+      originalPrice: "Rs. 1,999.00",
+      image:
+        "//crazymonk.in/cdn/shop/files/JinWoo_CM.jpg?v=1746189962&width=1100",
+      hoverImage:
+        "//crazymonk.in/cdn/shop/files/JIN.jpg?v=1746189962&width=1100",
+      isOnSale: true,
+      description:
+        "Product HighlightsFabric - 240 GSM Heavy Gauge, Bio-Washed Cotton Pattern - PrintedSleeves - Half SleeveFit -...",
+    },
+    {
+      id: 3,
+      name: "Warrior of Liberation Oversized T-Shirt - Multi Color",
+      price: "Rs. 699.00",
+      originalPrice: "Rs. 1,999.00",
+      image:
+        "//crazymonk.in/cdn/shop/files/WarriorofLiberation_2_CM.jpg?v=1746189955&width=1100",
+      hoverImage:
+        "//crazymonk.in/cdn/shop/files/WarriorofLiberation_1_3e393d6d-3581-46f3-9d5c-378059c57272.jpg?v=1746189955&width=1100",
+      isOnSale: true,
+      description:
+        "Product HighlightsFabric - 240 GSM Heavy Gauge, Bio-Washed Cotton Pattern - PrintedSleeves - Half SleeveFit -...",
+    },
+    {
+      id: 4,
+      name: "Ultra Ego Oversized T-Shirt",
+      price: "Rs. 699.00",
+      originalPrice: "Rs. 1,199.00",
+      image:
+        "//crazymonk.in/cdn/shop/files/UltraEgo_2_CM.jpg?v=1746190351&width=1100",
+      hoverImage:
+        "//crazymonk.in/cdn/shop/files/UltraEgo_1_aa37f4b1-b2e4-413a-ba46-87adc72f2f7d.jpg?v=1746190351&width=1100",
+      isOnSale: true,
+      description:
+        "Product HighlightsFabric - 240 GSM Heavy Gauge, Bio-Washed Cotton Pattern - PrintedSleeves - Half SleeveFit -...",
+    },
+  ];
 
   return (
-    <section className="py-20 bg-[#f8f8f8]">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-light mb-4">Top Trending Outfits</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Discover our most popular styles that everyone's talking about
-          </p>
-        </div>
+    <section className="py-16 px-10 bg-white">
+      <div className="mx-auto px-4">
+        {/* Section Header */}
+        <div className="text-center mb-8">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <h2 className="text-3xl font-semibold">You are in&nbsp;</h2>
+            <div className="relative">
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="text-3xl font-semibold flex items-center gap-2 hover:text-gray-700 transition-colors"
+              >
+                {tabOptions.find((option) => option.value === activeTab)?.label}
+                <svg
+                  className={`w-4 h-4 transition-transform ${
+                    isDropdownOpen ? "rotate-180" : ""
+                  }`}
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 448 512"
+                >
+                  <path d="M441.9 167.3l-19.8-19.8c-4.7-4.7-12.3-4.7-17 0L224 328.2 42.9 147.5c-4.7-4.7-12.3-4.7-17 0L6.1 167.3c-4.7 4.7-4.7 12.3 0 17l209.4 209.4c4.7 4.7 12.3 4.7 17 0l209.4-209.4c4.7-4.7 4.7-12.3 0-17z"></path>
+                </svg>
+              </button>
 
-        <Tabs defaultValue="men" className="w-full" onValueChange={setActiveTab}>
-          <div className="flex justify-center mb-10">
-            <TabsList className="bg-white border border-gray-200">
-              <TabsTrigger value="men" className="px-8 py-3 text-lg">
-                MEN
-              </TabsTrigger>
-              <TabsTrigger value="women" className="px-8 py-3 text-lg">
-                WOMEN
-              </TabsTrigger>
-              <TabsTrigger value="combos" className="px-8 py-3 text-lg">
-                COMBOS
-              </TabsTrigger>
-            </TabsList>
-          </div>
-
-          <TabsContent value="men" className="mt-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {products.men.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
+              {isDropdownOpen && (
+                <div className="absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-md shadow-lg z-10 min-w-[200px]">
+                  {tabOptions.map((option) => (
+                    <button
+                      key={option.value}
+                      onClick={() => {
+                        setActiveTab(option.value);
+                        setIsDropdownOpen(false);
+                      }}
+                      className={`w-full text-left px-4 py-2 hover:bg-gray-100 transition-colors ${
+                        activeTab === option.value
+                          ? "bg-gray-50 font-medium"
+                          : ""
+                      }`}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
-          </TabsContent>
-
-          <TabsContent value="women" className="mt-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {products.women.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-          </TabsContent>
-
-          <TabsContent value="combos" className="mt-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {products.combos.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-          </TabsContent>
-        </Tabs>        <div className="text-center mt-12">
-          <Button
-            className="bg-primary text-white hover:opacity-90 border border-primary px-8 py-6 text-lg transition-opacity"
-            asChild
+          </div>{" "}
+        </div>{" "}
+        {/* Product Slider */}
+        <div className="relative group/slider">          {/* Left Arrow */}
+          <button
+            onClick={scrollLeft}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center opacity-0 group-hover/slider:opacity-100 transition-opacity duration-300 hover:bg-gray-50"
+            aria-label="Scroll left"
           >
-            <a href={`/collections/${activeTab}`}>
-              View All {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}'s Collection
-            </a>
-          </Button>
+            <ChevronLeft className="w-5 h-5" />
+          </button>{" "}          {/* Right Arrow */}
+          <button
+            onClick={scrollRight}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center opacity-0 group-hover/slider:opacity-100 transition-opacity duration-300 hover:bg-gray-50"
+            aria-label="Scroll right"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>{" "}          {/* Scrollable Container */}
+          <div
+            ref={scrollContainerRef}
+            className="flex gap-6 overflow-x-auto scrollbar-hide pb-4"
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}
+          >
+            {products.map((product) => (
+              <div key={product.id} className="flex-none w-[300px] lg:w-[calc(25%-18px)] xl:w-[calc(25%-18px)] 2xl:w-[calc(25%-18px)]">
+                <ProductCard product={product} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
-
-interface ProductCardProps {
-  product: {
-    id: number
-    name: string
-    price: string
-    image: string
-    category: string
-    isNew: boolean
-    includes?: string
-  }
-}
-
-function ProductCard({ product }: ProductCardProps) {
-  return (
-    <div className="group">
-      <div className="relative overflow-hidden rounded-lg mb-4">        {product.isNew && (
-          <div className="absolute top-4 left-4 bg-primary text-white text-xs font-medium px-2 py-1 z-10">NEW</div>
-        )}
-        <img
-          src={product.image || "/placeholder.svg"}
-          alt={product.name}
-          className="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-opacity duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-          <Button className="bg-white text-black hover:bg-black hover:text-white">Quick View</Button>
-        </div>
-      </div>
-      <div className="text-center">
-        <p className="text-sm text-gray-500 mb-1">{product.category}</p>
-        <h3 className="text-lg font-medium mb-1">{product.name}</h3>
-        <p className="text-lg font-semibold">{product.price}</p>
-        {product.includes && <p className="text-sm text-gray-500 mt-1">Includes: {product.includes}</p>}
-      </div>
-    </div>
-  )
-}
-
