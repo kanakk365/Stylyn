@@ -64,7 +64,7 @@ export default function HeroSlider() {
             className="block md:hidden w-full h-full object-cover rounded-b-lg rounded-t-2xl"
           />
           {/* Overlay */}
-          <div className="absolute inset-0 bg-black/40 z-10 rounded-b-lg rounded-t-4xl" />
+          <div className="absolute inset-0 bg-black/40 z-10 rounded-b-lg rounded-t-3xl" />
           {/* Content */}
         </div>
       ))}

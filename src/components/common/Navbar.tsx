@@ -147,13 +147,13 @@ export default function Navbar() {
                 }`}
               ></div>
             </div>
-          </button>
-
+          </button>{" "}
           {/* Mobile Logo */}
           <Link to="/" className="flex-1 flex justify-center">
-            <span className="text-xl ml-10 text-black font-semibold ">StyleIn</span>
+            <span className="text-xl ml-10 text-neutral-800 font-semibold font-logo ">
+              StyleIn
+            </span>
           </Link>
-
           {/* Mobile Actions */}
           <div className="flex items-center space-x-3">
             <button className="p-2">
@@ -271,9 +271,13 @@ export default function Navbar() {
       <div className="hidden md:block">
         <div className=" mx-auto max-w-[85%] ">
           <div className="flex items-center justify-between h-16">
+            {" "}
             {/* Desktop Logo */}
             <div className="flex-shrink-0">
-              <Link to="/" className="text-2xl font-bold text-black">
+              <Link
+                to="/"
+                className="text-xl font-bold text-neutral-800 font-logo "
+              >
                 StyleIn
               </Link>
             </div>
@@ -286,7 +290,6 @@ export default function Navbar() {
                     className="relative group"
                     onMouseEnter={() => handleMouseEnter(item.name)}
                     onMouseLeave={handleMouseLeave}
-                    
                   >
                     {" "}
                     <Link
